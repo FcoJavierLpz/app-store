@@ -5,8 +5,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Available Scripts
 
 In the project directory, you can run:
+
 ### `npm install`
+
 First install Dependencies
+
 ### `npm start`
 
 Runs the app in the development mode.\
@@ -26,4 +29,3 @@ Your app is ready to be deployed!
 ### Deploying a Website
 
 [Fake Store Online](https://the-great-fcojavierlpz-site.netlify.app/)
-
