@@ -181,9 +181,3 @@ export default function Wraped() {
     </QueryClientProvider>
   );
 }
-
-{
-  /* <h1 className="flex justify-center p-10 text-2xl font-bold">
-  This product {id} does not exist
-</h1> */
-}
