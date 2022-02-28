@@ -10,7 +10,7 @@ function App() {
     <Router>
       <div className="App">
         <NavBar />
-        <main className="container">
+        <main className="mx-auto">
           <Routes>
             <Route path="/products/:id" element={<Product />} />
             <Route path="/products" element={<Products />} />
