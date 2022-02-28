@@ -10,7 +10,7 @@ const NavBar = () => {
             <Link className="text-3xl font-bold font-heading" to="/">
               <img className="h-9" src={logo} alt="logo" />
             </Link>
-            <ul className="hidden md:flex px-4 mx-auto font-semibold font-heading space-x-12">
+            <ul className="md:flex px-4 mx-auto font-semibold font-heading md:space-x-12">
               <li>
                 <NavLink className="hover:text-gray-200" to="/">
                   Home
