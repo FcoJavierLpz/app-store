@@ -1,26 +1,32 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import Loading from '../components/common/Loading';
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 import http from '../services/httpService';
+
+const queryClient = new QueryClient();
 
 function Product() {
   const navigate = useNavigate();
   const [product, setProduct] = useState({});
   const { id } = useParams();
 
-  useEffect(() => {
-    const getProduct = async () => {
-      try {
-        const { data } = await http.get(`products/${id}`);
-        setProduct(data);
-      } catch (ex) {
-        if (ex.response && ex.response.status === 404) {
-          navigate('/not-found');
-        }
+  const { isLoading, data } = useQuery('getProduct', async () => {
+    try {
+      const { data } = await http.get(`products/${id}`);
+      return data;
+    } catch (ex) {
+      if (ex.response && ex.response.status === 404) {
+        navigate('/not-found');
       }
-    };
+    }
+  });
 
-    getProduct();
-  }, []);
+  useEffect(() => {
+    if (data) {
+      setProduct(data);
+    }
+  }, [data]);
 
   const handlePayment = (e) => {
     e.preventDefault();
@@ -29,7 +35,9 @@ function Product() {
 
   return (
     <div>
-      {product ? (
+      {isLoading ? (
+        <Loading />
+      ) : (
         <div className="pt-6">
           {/* Image gallery */}
           <div className="mt-6 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-3 lg:gap-x-8">
@@ -161,13 +169,21 @@ function Product() {
             </div>
           </div>
         </div>
-      ) : (
-        <h1 className="flex justify-center p-10 text-2xl font-bold">
-          This product {id} does not exist
-        </h1>
       )}
     </div>
   );
 }
 
-export default Product;
+export default function Wraped() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Product />
+    </QueryClientProvider>
+  );
+}
+
+{
+  /* <h1 className="flex justify-center p-10 text-2xl font-bold">
+  This product {id} does not exist
+</h1> */
+}
