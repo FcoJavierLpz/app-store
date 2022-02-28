@@ -1,13 +1,27 @@
 import { useState, useEffect } from 'react';
+import http from '../services/httpService';
 
 function Products() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    setProducts(products);
-  });
+    const getProducts = async () => {
+      const { data } = await http.get('products');
+      setProducts(data);
+    };
 
-  return <div>Products</div>;
+    getProducts();
+  }, []);
+
+  return (
+    <div>
+      <ul>
+        {products.map((product) => (
+          <li key={product.id}>{product.title}</li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
 export default Products;
