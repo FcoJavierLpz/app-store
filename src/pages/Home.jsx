@@ -1,5 +1,9 @@
 function Home() {
-  return <div>Home</div>;
+  return (
+    <div className="grid place-items-center h-96 mt-24">
+      <h1 className="text-5xl">Welcome to Fake Store</h1>
+    </div>
+  );
 }
 
 export default Home;
