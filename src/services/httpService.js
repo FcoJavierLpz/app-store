@@ -3,7 +3,7 @@ import config from '../config.json';
 
 const instance = axios.create({
   baseURL: config.baseUrl,
-  timeout: 2500
+  timeout: 3500
 });
 
 export default {
