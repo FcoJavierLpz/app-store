@@ -34,7 +34,7 @@ function Product() {
   };
 
   return (
-    <div>
+    <div className="py-16 px-4">
       {isLoading ? (
         <Loading />
       ) : (
